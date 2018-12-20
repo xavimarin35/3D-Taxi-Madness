@@ -18,6 +18,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
+
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
@@ -107,6 +108,7 @@ bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading player");
 
+	delete[] vehicle->info.wheels;
 	return true;
 }
 
@@ -134,7 +136,9 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
-		brake = BRAKE_POWER;
+		if (vehicle->GetKmh() > 0.0f){ brake = BRAKE_POWER; }
+
+		if (vehicle->GetKmh() <= 0.0f) { acceleration = -(MAX_ACCELERATION / 2); }
 	}
 
 	vehicle->ApplyEngineForce(acceleration);
