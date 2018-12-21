@@ -19,13 +19,13 @@ bool ModuleSceneIntro::Start()
 
 	CreateWorld();  //mamausacions i altres mamausades 
 
-	limit1.size.x = 2;
+	/*limit1.size.x = 2;
 	limit1.size.y = 30;
 	limit1.size.z = 400;
 	limit1.color = Red;
 	limit1.SetPos(100, 0, 0);
 	limit1.wire = true;
-	limit1.Render();
+	limit1.Render();*/
 
 	App->physics->AddBody(limit1);
 
@@ -55,6 +55,11 @@ update_status ModuleSceneIntro::Update(float dt)
 		FloorCubes[i]->Render();
 	}
 
+	for (int j = 0; j < 4; j++) 
+	{
+		LimitCubes[j]->Render();
+	}
+
 	return UPDATE_CONTINUE;
 }
 
@@ -76,6 +81,16 @@ void ModuleSceneIntro::CreateWorld()
 		FloorCubes[i]->SetPos(FloorPosition[i].x, FloorPosition[i].y, FloorPosition[i].z);
 		FloorCubes[i]->SetRotation(FloorRotation[i].angle, FloorRotation[i].axis_pos);
 		bodyFloorCubes.PushBack(App->physics->AddBody(*(FloorCubes[i]), 0.0f));
+	}
+
+	BodySize LimitsSize[4] = { {2, 30, 400}, {2, 30, 400}, {400, 30 , 2}, {400, 30, 2} };
+	vec3 LimitsPosition[4] = { {-200, 15, 0}, {200, 15, 0}, {0, 15, 200}, {0, 15, -200} };
+
+	for (int j = 0; j < 4; j++) 
+	{
+		LimitCubes.PushBack(new Cube(LimitsSize[j].sizeX, LimitsSize[j].sizeY, LimitsSize[j].sizeZ));
+		LimitCubes[j]->SetPos(LimitsPosition[j].x, LimitsPosition[j].y, LimitsPosition[j].z);
+		bodyLimitCubes.PushBack(App->physics->AddBody(*(LimitCubes[j]), 0.0f));
 	}
 }
 

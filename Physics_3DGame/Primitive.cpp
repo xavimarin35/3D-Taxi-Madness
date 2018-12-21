@@ -9,7 +9,9 @@
 
 // ------------------------------------------------------------
 Primitive::Primitive() : transform(IdentityMatrix), color(Yellow), wire(false), axis(false), type(PrimitiveTypes::Primitive_Point)
-{}
+{
+	// TODO: color(Yellow) s'hauria de treure i poder canviar el color quan crees un now PhysBody, sinó tot és groc
+}
 
 // ------------------------------------------------------------
 PrimitiveTypes Primitive::GetType() const

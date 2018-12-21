@@ -62,4 +62,8 @@ public:
 
 	p2DynArray<Cube*> FloorCubes;
 	p2DynArray<PhysBody3D*> bodyFloorCubes;
+
+	p2DynArray<Cube*> LimitCubes;
+	p2DynArray<PhysBody3D*> bodyLimitCubes;
+
 };
