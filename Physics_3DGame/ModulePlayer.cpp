@@ -22,7 +22,7 @@ bool ModulePlayer::Start()
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
-	car.chassis_size.Set(2, 2, 4);
+	car.chassis_size.Set(2, 1.3, 4);
 	car.chassis_offset.Set(0, 1.5, 0);
 	car.mass = 500.0f;
 	car.suspensionStiffness = 15.88f;
@@ -177,7 +177,7 @@ void ModulePlayer::CameraToPlayer()
 	App->camera->Position.y = newCameraPos.y;
 	App->camera->Position.z = newCameraPos.z;
 
-	newCameraPos = initialCarPos - 6 * newCarDirection;
+	newCameraPos = initialCarPos - 9 * newCarDirection;
 	App->camera->Position.y = initialCarPos.y + 6;
 
 }

@@ -18,7 +18,7 @@ public:
 	void Move(const vec3 &Movement);
 	float* GetViewMatrix();
 
-	void ChangeCamera(bool notFollow);
+	void ChangeCamera(bool followCamera);
 	bool followCamera = false;
 
 	vec3 followRef;

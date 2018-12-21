@@ -47,7 +47,7 @@ update_status ModuleCamera3D::Update(float dt)
 		followCamera = !followCamera;
 	}
 
-	if (followCamera) 
+	if (followCamera == true) 
 	{
 		vec3 newPos(0,0,0);
 		float speed = 3.0f * dt;
@@ -106,9 +106,8 @@ update_status ModuleCamera3D::Update(float dt)
 	}
 	else 
 	{
-		//followRef = { App->player->}
-
-		//Look(...)
+		followRef = { App->player->initialCarPos.x, App->player->initialCarPos.y + 4, App->player->initialCarPos.z };
+		Look(Position, followRef, true);
 	}
 
 	// Recalculate matrix -------------
@@ -172,7 +171,7 @@ void ModuleCamera3D::CalculateViewMatrix()
 }
 
 // -----------------------------------------------------------------
-void ModuleCamera3D::ChangeCamera(bool notFollow)
+void ModuleCamera3D::ChangeCamera(bool followCamera)
 {
-	followCamera = notFollow;
+	this->followCamera = followCamera;
 }
