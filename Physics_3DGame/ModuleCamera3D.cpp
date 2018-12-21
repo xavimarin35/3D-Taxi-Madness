@@ -47,7 +47,19 @@ update_status ModuleCamera3D::Update(float dt)
 		followCamera = !followCamera;
 	}
 
-	if (followCamera == true) 
+	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN) 
+	{
+		mapCamera = !mapCamera;
+	}
+
+	if (mapCamera == true) 
+	{
+		vec3 newPos(0, 80, 0);
+		Position += newPos;
+		Reference += newPos;
+	}
+
+	if (followCamera == true && mapCamera == false)
 	{
 		vec3 newPos(0,0,0);
 		float speed = 3.0f * dt;
@@ -171,7 +183,8 @@ void ModuleCamera3D::CalculateViewMatrix()
 }
 
 // -----------------------------------------------------------------
-void ModuleCamera3D::ChangeCamera(bool followCamera)
+void ModuleCamera3D::ChangeCamera(bool followCamera, bool mapCamera)
 {
 	this->followCamera = followCamera;
+	this->mapCamera = mapCamera;
 }

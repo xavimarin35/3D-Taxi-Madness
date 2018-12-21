@@ -17,6 +17,16 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
+	limit1.size.x = 2;
+	limit1.size.y = 30;
+	limit1.size.z = 400;
+	limit1.color = Red;
+	limit1.SetPos(100, 0, 0);
+	limit1.wire = true;
+	limit1.Render();
+
+	App->physics->AddBody(limit1);
+
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
