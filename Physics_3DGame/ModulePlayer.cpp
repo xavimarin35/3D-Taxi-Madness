@@ -98,7 +98,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 12, 10);
+	vehicle->SetPos(0, 4, 0);
 	
 	return true;
 }
@@ -146,6 +146,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Brake(brake);
 
 	vehicle->Render();
+	CameraToPlayer();
 
 	char title[80];
 	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
@@ -154,9 +155,31 @@ update_status ModulePlayer::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
-vec3 ModulePlayer::getPos()
+void ModulePlayer::CameraToPlayer()
 {
-	return vec3();
+	newCarPos = vehicle->vehicle->getChassisWorldTransform();
+	
+	initialCarPos = 
+	{		
+		newCarPos.getOrigin().getX(),
+		newCarPos.getOrigin().getY(), 
+		newCarPos.getOrigin().getZ() 
+	};
+
+	newCarDirection = 
+	{		
+		newCarPos.getBasis().getColumn(2).getX(),
+		newCarPos.getBasis().getColumn(2).getY(),
+		newCarPos.getBasis().getColumn(2).getZ()
+	};
+
+	App->camera->Position.x = newCameraPos.x;
+	App->camera->Position.y = newCameraPos.y;
+	App->camera->Position.z = newCameraPos.z;
+
+	newCameraPos = initialCarPos - 6 * newCarDirection;
+	App->camera->Position.y = initialCarPos.y + 6;
+
 }
 
 

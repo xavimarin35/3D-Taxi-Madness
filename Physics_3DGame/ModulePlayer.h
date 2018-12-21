@@ -19,7 +19,7 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	vec3 getPos();
+	void CameraToPlayer();
 
 public:
 
@@ -27,4 +27,11 @@ public:
 	float turn;
 	float acceleration;
 	float brake;
+
+	btTransform newCarPos;
+	vec3 initialCarPos;
+	vec3 newCarDirection;
+	vec3 newCameraPos;
+	vec3 viewCar;
+
 };

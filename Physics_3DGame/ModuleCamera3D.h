@@ -20,6 +20,8 @@ public:
 
 	void ChangeCamera(bool notFollow);
 	bool followCamera = false;
+
+	vec3 followRef;
 private:
 
 	void CalculateViewMatrix();
