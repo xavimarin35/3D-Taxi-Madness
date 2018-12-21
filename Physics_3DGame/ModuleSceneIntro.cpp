@@ -50,7 +50,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		FloorCubes[i]->Render();
 	}
@@ -69,17 +69,18 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 
 void ModuleSceneIntro::CreateWorld()
 {
-	BodySize FloorSize[2] = { {10, 1, 20}, {10, 1, 60} };
+	BodySize FloorSize[1] = { {400, 1, 400}};
 
-	vec3 FloorPosition[2] = { {-20, 1, 20}, {-30, 1, 50} };
+	vec3 FloorPosition[1] = { {0, 0, 0} };
 
-	BodyRotation FloorRotation[2] = { {-45, {0,1,0}}, {0, {0,1,0}} };
+	//BodyRotation FloorRotation[2] = { {-45, {0,1,0}}, {0, {0,1,0}} };
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		FloorCubes.PushBack(new Cube(FloorSize[i].sizeX, FloorSize[i].sizeY, FloorSize[i].sizeZ));
 		FloorCubes[i]->SetPos(FloorPosition[i].x, FloorPosition[i].y, FloorPosition[i].z);
-		FloorCubes[i]->SetRotation(FloorRotation[i].angle, FloorRotation[i].axis_pos);
+		//FloorCubes[i]->SetRotation(FloorRotation[i].angle, FloorRotation[i].axis_pos);
+		FloorCubes[i]->color = Grey;
 		bodyFloorCubes.PushBack(App->physics->AddBody(*(FloorCubes[i]), 0.0f));
 	}
 
@@ -90,6 +91,7 @@ void ModuleSceneIntro::CreateWorld()
 	{
 		LimitCubes.PushBack(new Cube(LimitsSize[j].sizeX, LimitsSize[j].sizeY, LimitsSize[j].sizeZ));
 		LimitCubes[j]->SetPos(LimitsPosition[j].x, LimitsPosition[j].y, LimitsPosition[j].z);
+		//LimitCubes[j]->color = Black;
 		bodyLimitCubes.PushBack(App->physics->AddBody(*(LimitCubes[j]), 0.0f));
 	}
 }
