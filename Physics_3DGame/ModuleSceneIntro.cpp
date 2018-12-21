@@ -17,7 +17,7 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	CreateWorld();
+	CreateWorld();  //mamausacions i altres mamausades 
 
 	limit1.size.x = 2;
 	limit1.size.y = 30;
