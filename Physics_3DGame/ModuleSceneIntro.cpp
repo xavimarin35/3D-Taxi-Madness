@@ -17,6 +17,8 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
+	CreateWorld();
+
 	limit1.size.x = 2;
 	limit1.size.y = 30;
 	limit1.size.z = 400;
@@ -48,10 +50,32 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
+	for (int i = 0; i < 2; i++)
+	{
+		FloorCubes[i]->Render();
+	}
+
 	return UPDATE_CONTINUE;
 }
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
+}
+
+void ModuleSceneIntro::CreateWorld()
+{
+	BodySize FloorSize[2] = { {10, 1, 20}, {10, 1, 60} };
+
+	vec3 FloorPosition[2] = { {-20, 1, 20}, {-30, 1, 50} };
+
+	BodyRotation FloorRotation[2] = { {-45, {0,1,0}}, {0, {0,1,0}} };
+
+	for (int i = 0; i < 2; i++)
+	{
+		FloorCubes.PushBack(new Cube(FloorSize[i].sizeX, FloorSize[i].sizeY, FloorSize[i].sizeZ));
+		FloorCubes[i]->SetPos(FloorPosition[i].x, FloorPosition[i].y, FloorPosition[i].z);
+		FloorCubes[i]->SetRotation(FloorRotation[i].angle, FloorRotation[i].axis_pos);
+		bodyFloorCubes.PushBack(App->physics->AddBody(*(FloorCubes[i]), 0.0f));
+	}
 }
 

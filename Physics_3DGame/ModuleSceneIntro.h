@@ -9,6 +9,17 @@
 struct PhysBody3D;
 struct PhysMotor3D;
 
+struct BodySize {
+	float sizeX;
+	float sizeY;
+	float sizeZ;
+};
+
+struct BodyRotation {
+	float angle;
+	vec3 axis_pos;
+};
+
 class ModuleSceneIntro : public Module
 {
 public:
@@ -20,6 +31,9 @@ public:
 	bool CleanUp();
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
+
+	void CreateWorld();
+
 
 public:
 	/*
@@ -43,4 +57,9 @@ public:
 
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
+
+	//------------------------------------
+
+	p2DynArray<Cube*> FloorCubes;
+	p2DynArray<PhysBody3D*> bodyFloorCubes;
 };
