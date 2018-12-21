@@ -154,5 +154,10 @@ update_status ModulePlayer::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
+vec3 ModulePlayer::getPos()
+{
+	return vec3();
+}
+
 
 

@@ -18,6 +18,8 @@ public:
 	void Move(const vec3 &Movement);
 	float* GetViewMatrix();
 
+	void ChangeCamera(bool notFollow);
+	bool followCamera = false;
 private:
 
 	void CalculateViewMatrix();
