@@ -22,8 +22,28 @@ bool ModulePlayer::Start()
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
-	car.chassis_size.Set(2, 1.3, 4);
-	car.chassis_offset.Set(0, 1.5, 0);
+	
+	// Part de sota, prima i llarga, negra
+	car.chassis_size.Set(2, 0.5, 5);
+	car.chassis_offset.Set(0, 1.2, 0);
+
+	// Cub davant, negre
+	car.upper_chassis.Set(2, 1.2, 1.5);
+	car.upper_chassis_offset.Set(0, 2.0, 1.8);
+
+	// Rectangle darrera, negre
+	car.upper_chassis2.Set(2, 1.2, 2);
+	car.upper_chassis2_offset.Set(0, 2.0, -2.0);
+
+	// Part del mig, rectangle groc
+	car.middle_chassis.Set(2, 1.2, 2.1);
+	car.middle_chassis_offset.Set(0, 2.0, 0);
+
+	// Part de dalt, rectangle llarg negre
+	car.top_chassis.Set(2, 0.4, 3);
+	car.top_chassis_offset.Set(0, 2.8, 0);
+
+
 	car.mass = 500.0f;
 	car.suspensionStiffness = 15.88f;
 	car.suspensionCompression = 0.83f;
