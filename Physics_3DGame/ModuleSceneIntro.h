@@ -43,8 +43,12 @@ public:
 	PhysBody3D* pb_snake2[MAX_SNAKE];
 	Sphere s_snake2[MAX_SNAKE];
 	*/
-	Cube limit1;
 
+	SDL_Rect timer, time_left;
+	SDL_Texture* graphics = nullptr;
+	int time_toMove = 2000;
+
+	Timer clock;
 
 	PhysBody3D* pb_chassis;
 	Cube p_chassis;
@@ -65,5 +69,36 @@ public:
 
 	p2DynArray<Cube*> LimitCubes;
 	p2DynArray<PhysBody3D*> bodyLimitCubes;
+
+	p2DynArray<Cube*> RoadCubes;
+	p2DynArray<PhysBody3D*> bodyRoadCubes;
+
+	p2DynArray<Cube*> DetailsCubes;
+	p2DynArray<PhysBody3D*> bodyDetailsCubes;
+	
+	p2DynArray<Cube*> PeopleCubes;
+	p2DynArray<PhysBody3D*> bodyPeopleCubes;
+	
+	p2DynArray<Cube*> BuildingsCubes;
+	p2DynArray<PhysBody3D*> bodyBuildingsCubes;
+
+private:
+	void	LimitsRender();
+	int		num_limits;
+
+	void	FloorsRender();
+	int		num_floors;
+
+	void	RoadRender();
+	int		num_roads;
+
+	void	DetailsRender();
+	int		num_details;
+
+	void	PeopleRender();
+	int		num_people;
+
+	void	BuildingsRender();
+	int		num_buildings;
 
 };

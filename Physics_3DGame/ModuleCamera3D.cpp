@@ -54,7 +54,7 @@ update_status ModuleCamera3D::Update(float dt)
 
 	if (mapCamera == true) 
 	{
-		vec3 newPos(0, 80, 0);
+		vec3 newPos(0, 70, 0);
 		Position += newPos;
 		Reference += newPos;
 	}
