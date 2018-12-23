@@ -153,18 +153,18 @@ void ModuleSceneIntro::RoadRender()
 	BodySize curva_oberta = { 2,5,50 };
 	BodySize curva_tancada = { 2,5,10 };
 
-	//						  //   	recta 1      //          curva 1          //     recta 2      //             pont 1              //      recta 3     //         curva 2           //
-	BodySize RoadSize[95] = { {2,5,100}, {2,5,100}, curva_oberta, curva_tancada, {2,5,15}, {2,5,15}, {15,2,23}, {32,2,23}, {15,2,23}, {2,5,100}, {2,5,100}, curva_oberta, curva_tancada };
+	//						  //   	recta 1      //          curva 1          //     recta 2      //             pont 1              //      recta 3     //         curva 2           //        recta 4     //           curva 3         //        recta 5     //          curva 4          //        recta 6     //          curva 5       //        recta 7     //
+	BodySize RoadSize[95] = { {2,5,100}, {2,5,100}, curva_oberta, curva_tancada, {2,5,15}, {2,5,15}, {15,2,23}, {32,2,23}, {15,2,23}, {2,5,100}, {2,5,100}, curva_oberta, curva_tancada, {2,5,150}, {2,5,143}, curva_oberta, curva_tancada, {2,5,400}, {2,5,422}, curva_oberta, curva_tancada, {2,5,400}, {2,5,460}, {2,5,50}, curva_tancada, {2,5,100}, {2,5,100} };
 
 
 
-	//                        //      recta 1         //         curva 1        //          recta 2         //                       pont 1                      //            recta 3        //         curva 2          //
-	vec3 RoadPosition[95] = { {390,2.5,0}, {370,2.5,0}, {373,2.5,66}, {366,2.5,53}, {356,2.5,79}, {356,2.5,56}, {347.5,2.5,67.5}, {325,6.5,67.5}, {302.5,2.5,67.5}, {252,2.5,78}, {252,2.5,58}, {185,2.5,60}, {200,2.5,55} };
+	//                        //      recta 1         //         curva 1        //          recta 2         //                       pont 1                      //            recta 3        //         curva 2          //            recta 4         //            curva 3            //           recta 5           //             curva 4             //            recta 6            //            curva 5            //           recta 7            //
+	vec3 RoadPosition[95] = { {390,2.5,0}, {370,2.5,0}, {373,2.5,66}, {366,2.5,53}, {356,2.5,79}, {356,2.5,56}, {347.5,2.5,67.5}, {325,6.5,67.5}, {302.5,2.5,67.5}, {252,2.5,78}, {252,2.5,58}, {185,2.5,60}, {200,2.5,55}, {197,2.5,-23}, {167,2.5,-22.5}, {180,2.5,-115}, {164,2.5,-97.5}, {-38,2.5,-100}, {-40,2.5,-130}, {-270,2.5,-113}, {-241,2.5,-98}, {-243.5,2.5,105}, {-275,2.5,120}, {-258,2.5,340}, {-240,2.5,308}, {-187,2.5,311}, {-187,2.5,340} };
 
 
 
-	//                               //           recta 1      //             curva 1          //             recta 2           //                pont 1                  //             recta 3          //            curva 2          //
-	BodyRotation RoadRotation[95] = { {0, {0,1,0}}, {0, {0,1,0}}, {-45, {0,1,0}}, {-45, {0,1,0}}, {-90, {0,1,0}}, {-90, {0,1,0}}, {-30, {0,0,1}}, {0, {0,1,0}}, {30,{0,0,1}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-135, {0,1,0}}, {-135,{0,1,0}} };
+	//                               //           recta 1      //             curva 1          //             recta 2           //                pont 1                  //             recta 3          //            curva 2          //          recta 4        //             curva 3           //              recta 5       //            curva 4           //          recta 6        //              curva 5          //             recta 7         //
+	BodyRotation RoadRotation[95] = { {0, {0,1,0}}, {0, {0,1,0}}, {-45, {0,1,0}}, {-45, {0,1,0}}, {-90, {0,1,0}}, {-90, {0,1,0}}, {-30, {0,0,1}}, {0, {0,1,0}}, {30,{0,0,1}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-135, {0,1,0}}, {-135,{0,1,0}}, {0, {0,1,0}}, {0,{0,1,0}}, {-135, {0,1,0}}, {-135,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-45, {0,1,0}}, {-45, {0,1,0}}, {0, {0,1,0}}, {0,{0,1,0}}, {-90, {0,1,0}}, {-135,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}} };
 
 
 
@@ -181,7 +181,27 @@ void ModuleSceneIntro::RoadRender()
 
 void ModuleSceneIntro::DetailsRender() 
 {
+	num_details = 3;
 
+	BodySize DetailsSize[3] = { {2,10,2}, {2,10,2}, {18,3.3,2} };
+	vec3 DetailsPosition[3] = { {390,10,15}, {370,10,15}, {380,13,15} };
+	BodyRotation DetailsRotation[3] = { {0,{0,1,0}}, {0,{0,1,0}}, {0,{0,1,0}} };
+
+	for (int i = 0; i < num_details; i++) 
+	{
+		DetailsCubes.PushBack(new Cube(DetailsSize[i].sizeX, DetailsSize[i].sizeY, DetailsSize[i].sizeZ));
+		DetailsCubes[i]->SetPos(DetailsPosition[i].x, DetailsPosition[i].y, DetailsPosition[i].z);
+		DetailsCubes[i]->SetRotation(DetailsRotation[i].angle, DetailsRotation[i].axis_pos);
+		if (i == 0 || i == 1) 
+		{
+			DetailsCubes[i]->color = Black;
+		}
+		else if (i == 2) 
+		{
+			DetailsCubes[i]->color = Yellow;
+		}
+		bodyDetailsCubes.PushBack(App->physics->AddBody(*(DetailsCubes[i]), 0.0f));
+	}
 }
 
 void ModuleSceneIntro::PeopleRender() 
