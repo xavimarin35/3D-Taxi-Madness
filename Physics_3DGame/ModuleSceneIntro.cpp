@@ -58,9 +58,29 @@ update_status ModuleSceneIntro::Update(float dt)
 		FloorCubes[i]->Render();
 	}
 
-	for (int j = 0; j < num_limits; j++) 
+	for (int i = 0; i < num_limits; i++) 
 	{
-		LimitCubes[j]->Render();
+		LimitCubes[i]->Render();
+	}
+
+	for (int i = 0; i < num_roads; i++)
+	{
+		RoadCubes[i]->Render();
+	}
+
+	for (int i = 0; i < num_buildings; i++)
+	{
+		BuildingsCubes[i]->Render();
+	}
+
+	for (int i = 0; i < num_details; i++)
+	{
+		DetailsCubes[i]->Render();
+	}
+
+	for (int i = 0; i < num_people; i++)
+	{
+		PeopleCubes[i]->Render();
 	}
 
 	return UPDATE_CONTINUE;
@@ -93,7 +113,7 @@ void ModuleSceneIntro::FloorsRender()
 {
 	num_floors = 2;
 
-	BodySize FloorSize[2] = { {400, 1, 400}, {400, 1, 400} };
+	BodySize FloorSize[2] = { {800, 1, 800}, {800, 1, 800} };
 
 	vec3 FloorPosition[2] = { {0, 0, 0}, {0, 80, 0} };
 
@@ -114,8 +134,8 @@ void ModuleSceneIntro::LimitsRender()
 {
 	num_limits = 4;
 
-	BodySize LimitsSize[4] = { {2, 130, 400}, {2, 130, 400}, {400, 130 , 2}, {400, 130, 2} };
-	vec3 LimitsPosition[4] = { {-200, 15, 0}, {200, 15, 0}, {0, 15, 200}, {0, 15, -200} };
+	BodySize LimitsSize[4] = { {2, 130, 800}, {2, 130, 800}, {800, 130 , 2}, {800, 130, 2} };
+	vec3 LimitsPosition[4] = { {-400, 15, 0}, {400, 15, 0}, {0, 15, 400}, {0, 15, -400} };
 
 	for (int j = 0; j < num_limits; j++)
 	{
@@ -128,7 +148,35 @@ void ModuleSceneIntro::LimitsRender()
 
 void ModuleSceneIntro::RoadRender()
 {
+	num_roads = 95;
 
+	BodySize curva_oberta = { 2,5,50 };
+	BodySize curva_tancada = { 2,5,10 };
+
+	//						  //   	recta 1      //          curva 1          //     recta 2      //             pont 1              //      recta 3     //         curva 2           //
+	BodySize RoadSize[95] = { {2,5,100}, {2,5,100}, curva_oberta, curva_tancada, {2,5,15}, {2,5,15}, {15,2,23}, {32,2,23}, {15,2,23}, {2,5,100}, {2,5,100}, curva_oberta, curva_tancada };
+
+
+
+	//                        //      recta 1         //         curva 1        //          recta 2         //                       pont 1                      //            recta 3        //         curva 2          //
+	vec3 RoadPosition[95] = { {390,2.5,0}, {370,2.5,0}, {373,2.5,66}, {366,2.5,53}, {356,2.5,79}, {356,2.5,56}, {347.5,2.5,67.5}, {325,6.5,67.5}, {302.5,2.5,67.5}, {252,2.5,78}, {252,2.5,58}, {185,2.5,60}, {200,2.5,55} };
+
+
+
+	//                               //           recta 1      //             curva 1          //             recta 2           //                pont 1                  //             recta 3          //            curva 2          //
+	BodyRotation RoadRotation[95] = { {0, {0,1,0}}, {0, {0,1,0}}, {-45, {0,1,0}}, {-45, {0,1,0}}, {-90, {0,1,0}}, {-90, {0,1,0}}, {-30, {0,0,1}}, {0, {0,1,0}}, {30,{0,0,1}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-135, {0,1,0}}, {-135,{0,1,0}} };
+
+
+
+
+	for (int i = 0; i < num_roads; i++) 
+	{
+		RoadCubes.PushBack(new Cube(RoadSize[i].sizeX, RoadSize[i].sizeY, RoadSize[i].sizeZ));
+		RoadCubes[i]->SetPos(RoadPosition[i].x, RoadPosition[i].y, RoadPosition[i].z);
+		RoadCubes[i]->SetRotation(RoadRotation[i].angle, RoadRotation[i].axis_pos);
+		RoadCubes[i]->color = Brown;
+		bodyRoadCubes.PushBack(App->physics->AddBody(*(RoadCubes[i]), 0.0f));
+	}
 }
 
 void ModuleSceneIntro::DetailsRender() 
