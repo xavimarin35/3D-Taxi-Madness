@@ -119,6 +119,10 @@ bool ModulePlayer::Start()
 
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(380, 2, 0);
+
+	//title values
+	laps = 0;
+	timer.Start();
 	
 	return true;
 }
@@ -168,8 +172,12 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 	CameraToPlayer();
 
+	int lap_sec = timer.Read() / 1000;
+	int lap_min = lap_sec / 60;
+	lap_sec -= lap_min * 60;
+
 	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	sprintf_s(title, "RUN AWAY FROM GANGSTERS! || Speed: %.1f Km/h || Laps: %u || Time: %.2i:%.2i", vehicle->GetKmh(), laps, lap_min, lap_sec);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;

@@ -34,4 +34,9 @@ public:
 	vec3 newCameraPos;
 	vec3 viewCar;
 
+	int laps = 0;
+	int laps_time = 0;
+	Timer timer;
+
+
 };
