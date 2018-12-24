@@ -165,6 +165,14 @@ update_status ModulePlayer::Update(float dt)
 		if (vehicle->GetKmh() <= 0.0f) { acceleration = -(MAX_ACCELERATION / 2); }
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+	{
+		vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0,0,0 });
+		timer.Start();
+		Respawn({ INITIAL_POS });
+		laps = 0;
+	}
+
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
@@ -208,6 +216,16 @@ void ModulePlayer::CameraToPlayer()
 	newCameraPos = initialCarPos - 9 * newCarDirection;
 	App->camera->Position.y = initialCarPos.y + 6;
 
+}
+
+void ModulePlayer::MySetPos(vec3 newPos)
+{
+	vehicle->SetPos(newPos.x, newPos.y, newPos.z);
+}
+
+void ModulePlayer::Respawn(vec3 respawn_pos) 
+{
+	MySetPos(respawn_pos);
 }
 
 
