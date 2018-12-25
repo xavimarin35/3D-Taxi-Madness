@@ -174,7 +174,7 @@ void ModuleSceneIntro::RoadRender()
 		RoadCubes.PushBack(new Cube(RoadSize[i].sizeX, RoadSize[i].sizeY, RoadSize[i].sizeZ));
 		RoadCubes[i]->SetPos(RoadPosition[i].x, RoadPosition[i].y, RoadPosition[i].z);
 		RoadCubes[i]->SetRotation(RoadRotation[i].angle, RoadRotation[i].axis_pos);
-		RoadCubes[i]->color = Brown;
+		RoadCubes[i]->color = Blue2;		
 		bodyRoadCubes.PushBack(App->physics->AddBody(*(RoadCubes[i]), 0.0f));
 	}
 }
