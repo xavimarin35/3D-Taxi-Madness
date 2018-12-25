@@ -42,5 +42,7 @@ public:
 	int laps_time = 0;
 	Timer timer;
 
+	bool checkpoint1 = false;
+
 
 };

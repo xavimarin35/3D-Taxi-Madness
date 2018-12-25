@@ -122,7 +122,7 @@ bool ModulePlayer::Start()
 
 	//title values
 	laps = 0;
-	timer.Start();
+	timer.Stop();
 	
 	return true;
 }
@@ -173,6 +173,17 @@ update_status ModulePlayer::Update(float dt)
 		laps = 0;
 	}
 
+	// Getting the checkpoints
+	float CarPosX = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getX();
+	float CarPosZ = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getZ();
+
+	if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11) 
+	{
+		checkpoint1 = true;
+		timer.Start();
+		laps =+ 1;
+	}
+
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
@@ -185,8 +196,11 @@ update_status ModulePlayer::Update(float dt)
 	lap_sec -= lap_min * 60;
 
 	char title[80];
-	sprintf_s(title, "RUN AWAY FROM GANGSTERS! || Speed: %.1f Km/h || Laps: %u || Time: %.2i:%.2i", vehicle->GetKmh(), laps, lap_min, lap_sec);
+	sprintf_s(title, "RUN AWAY FROM GANGSTERS! || Speed: %.1f Km/h || Laps: %u/2 || Time: %.2i:%.2i", vehicle->GetKmh(), laps, lap_min, lap_sec);
 	App->window->SetTitle(title);
+
+	LOG("x=%.1f", CarPosX);
+	LOG("z=%.1f", CarPosZ);
 
 	return UPDATE_CONTINUE;
 }
