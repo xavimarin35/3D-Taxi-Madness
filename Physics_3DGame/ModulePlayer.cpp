@@ -118,15 +118,15 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(380, 2, 0);
+	vehicle->SetPos(INITIAL_POS);
 
-	//initialPosMatrix = mat4x4
-	//	(0.8f, 0, 0.6f, 0,
-	//		0, 1, 0, 0,
-	//		-0.8509035f, 0, 0.5253220f, 0,
-	//		0, 0, 0, 1);
+	initialPosMatrix = mat4x4
+			(1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			380, 2, 0, 0);
 
-	//vehicle->SetTransform(initialPosMatrix.M);
+	vehicle->SetTransform(initialPosMatrix.M);
 
 
 	//title values
@@ -179,6 +179,7 @@ update_status ModulePlayer::Update(float dt)
 		timer.Start();
 		timer.Stop();
 		Respawn({ INITIAL_POS });
+		vehicle->SetTransform(initialPosMatrix.M);
 		laps = 0;
 	}
 
