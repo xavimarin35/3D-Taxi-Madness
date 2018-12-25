@@ -150,6 +150,12 @@ update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
 
+	//FX motor noise
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN)
+	{
+		App->audio->PlayFx(App->audio->accelerateFx);
+	}
+
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		acceleration = MAX_ACCELERATION;
@@ -191,8 +197,30 @@ update_status ModulePlayer::Update(float dt)
 	{
 		checkpoint1 = true;
 		timer.Start();
+		time_started = true;
 		laps =+ 1;
 	}
+
+	if (CarPosX > 260 && CarPosX < 265 && CarPosZ > 60 && CarPosZ < 76)
+	{
+		checkpoint2 = true;
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+		if (checkpoint1 == true && checkpoint2 == false)
+		{
+			Respawn({CHECKPOINT1});
+			ChooseMatrix(1);
+		}
+		else if (checkpoint1 == true && checkpoint2 == true)
+		{
+			Respawn({CHECKPOINT2});
+			ChooseMatrix(2);
+		}
+	}
+
+	
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
@@ -253,6 +281,31 @@ void ModulePlayer::Respawn(vec3 respawn_pos)
 	vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0,0,0 });
 	vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
 
+}
+
+void ModulePlayer::ChooseMatrix(int num) 
+{
+	if (num == 1) 
+	{
+		checkpoint1Matrix = mat4x4
+			(1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			380, 2, 25, 0);
+
+		vehicle->SetTransform(checkpoint1Matrix.M);
+	}
+
+	else if (num == 2)
+	{
+		checkpoint2Matrix = mat4x4
+			(0.5f, 0, 0, 0,
+			0, 0.5f, 0, 0,
+			0, 0, 1, 0,
+			182, 2, 40, 0);
+
+		vehicle->SetTransform(checkpoint2Matrix.M);
+	}
 }
 
 

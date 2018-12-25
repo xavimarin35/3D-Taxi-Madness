@@ -9,6 +9,8 @@ struct PhysVehicle3D;
 #define TURN_DEGREES 15.0f * DEGTORAD
 #define BRAKE_POWER 1000.0f
 #define INITIAL_POS 380, 2, 0
+#define CHECKPOINT1 380, 2, 25
+#define CHECKPOINT2 183, 2, 40
 
 class ModulePlayer : public Module
 {
@@ -24,6 +26,8 @@ public:
 
 	void MySetPos(vec3 newPos);
 	void Respawn(vec3 respawn_pos);
+
+	void ChooseMatrix(int num);
 
 public:
 
@@ -42,10 +46,13 @@ public:
 	int laps_time = 0;
 	Timer timer;
 
+	bool time_started = false;
 	bool checkpoint1 = false;
 	bool checkpoint2 = false;
 
 	mat4x4 initialPosMatrix;
+	mat4x4 checkpoint1Matrix;
+	mat4x4 checkpoint2Matrix;
 
 	
 };
