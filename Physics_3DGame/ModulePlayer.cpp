@@ -195,14 +195,16 @@ update_status ModulePlayer::Update(float dt)
 
 	if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11) 
 	{
+		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint1 = true;
 		timer.Start();
 		time_started = true;
 		laps =+ 1;
 	}
 
-	if (CarPosX > 260 && CarPosX < 265 && CarPosZ > 60 && CarPosZ < 76)
+	if (CarPosX > 169 && CarPosX < 184 && CarPosZ > 27 && CarPosZ < 28)
 	{
+		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint2 = true;
 	}
 
@@ -299,8 +301,8 @@ void ModulePlayer::ChooseMatrix(int num)
 	else if (num == 2)
 	{
 		checkpoint2Matrix = mat4x4
-			(0.5f, 0, 0, 0,
-			0, 0.5f, 0, 0,
+			(1, 0, 180, 0,
+			0, 1, 0, 0,
 			0, 0, 1, 0,
 			182, 2, 40, 0);
 

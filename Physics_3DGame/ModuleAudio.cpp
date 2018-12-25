@@ -42,6 +42,7 @@ bool ModuleAudio::Init()
 	}
 
 	accelerateFx = LoadFx("assets/audio/car_accelerating.wav");
+	checkpointFx = LoadFx("assets/audio/checkpoint.wav");
 	//PlayMusic("assets/audio/Laserpack.ogg");
 
 	return ret;

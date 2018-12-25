@@ -26,6 +26,7 @@ public:
 	bool PlayFx(unsigned int fx, int repeat = 0);
 
 	int accelerateFx;
+	int checkpointFx;
 
 private:
 
