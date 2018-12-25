@@ -169,14 +169,14 @@ void ModuleSceneIntro::RoadRender()
 
 void ModuleSceneIntro::DetailsRender() 
 {
-	num_details = 10;
+	num_details = 26;
 
 	BodySize pas_zebra = { 4,2,20 };
 	BodyRotation no_rotation = { 0,{0,1,0} };
 
-	BodySize DetailsSize[10] = { {2,10,2}, {2,10,2}, {18,3.3,2}, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra };
-	vec3 DetailsPosition[10] = { {390,10,15}, {370,10,15}, {380,13,15}, {182,-0.4,-23}, {188,-0.4,-23}, {176,-0.4,-23}, {170,-0.4,-23}, {194,-0.4,-23} };
-	BodyRotation DetailsRotation[10] = { no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation };
+	BodySize DetailsSize[26] = { {2,10,2}, {2,10,2}, {18,3.3,2}, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra };
+	vec3 DetailsPosition[26] = { {390,10,15}, {370,10,15}, {380,13,15}, {182,-0.4,-23}, {188,-0.4,-23}, {176,-0.4,-23}, {170,-0.4,-23}, {194,-0.4,-23}, {100,-0.4,-116}, {100,-0.4,-110}, {100,-0.4,-122}, {100,-0.4,-128}, {100,-0.4,-103}, {-150,-0.4,-116}, {-150,-0.4,-110}, {-150,-0.4,-122}, {-150,-0.4,-128}, {-150,-0.4,-103}, {248,-0.4,107.2}, {248,-0.4,113.2}, {248,-0.4,101.2}, {137,-0.4,-306}, {137,-0.4,-300}, {137,-0.4,-294}, {137,-0.4,-312}, {137,-0.4,-318} };
+	BodyRotation DetailsRotation[26] = { no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}} };
 
 	for (int i = 0; i < num_details; i++) 
 	{
@@ -191,7 +191,7 @@ void ModuleSceneIntro::DetailsRender()
 		{
 			DetailsCubes[i]->color = Yellow;
 		}
-		else if (i > 2 && i < 8) 
+		else if (i > 2 && i < 26) 
 		{
 			DetailsCubes[i]->color = White;
 		}
@@ -207,8 +207,8 @@ void ModuleSceneIntro::PeopleRender()
 	BodySize body = { 1.5,2.5,1 };
 
 	BodySize PeopleSize[51] = { {}, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body };
-	vec3 PeoplePosition[51] = { {}, {180,4.2,-23}, {180,2.5,-23} };
-	BodyRotation PeopleRotation[51] = { {}, no_rotation, no_rotation };
+	vec3 PeoplePosition[51] = { {}, {180,4.2,-23}, {180,2.5,-23}, {245,4.2,109}, {245,2.5,109}, {250,4.2,102}, {250,2.5,102}, {137,4.2,-312}, {137,2.5,-312}, {-143,4.2,-113}, {-143,2.5,-113} };
+	BodyRotation PeopleRotation[51] = { {}, no_rotation, no_rotation, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}} };
 
 	for (int i = 0; i < num_people; i++) 
 	{
