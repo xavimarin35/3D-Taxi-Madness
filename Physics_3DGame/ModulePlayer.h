@@ -11,6 +11,11 @@ struct PhysVehicle3D;
 #define INITIAL_POS 380, 2, 0
 #define CHECKPOINT1 380, 2, 25
 #define CHECKPOINT2 183, 2, 40
+#define CHECKPOINT3 -205, 2, -120
+#define CHECKPOINT4 -260, 2, 270
+#define CHECKPOINT5 264, 2, 107
+#define CHECKPOINT6 316, 2, -225
+#define CHECKPOINT7 -150, 2, -263
 
 class ModulePlayer : public Module
 {
@@ -49,10 +54,19 @@ public:
 	bool time_started = false;
 	bool checkpoint1 = false;
 	bool checkpoint2 = false;
+	bool checkpoint3 = false;
+	bool checkpoint4 = false;
+	bool checkpoint5 = false;
+	bool checkpoint6 = false;
+	bool checkpoint7 = false;
 
 	mat4x4 initialPosMatrix;
 	mat4x4 checkpoint1Matrix;
 	mat4x4 checkpoint2Matrix;
-
+	mat4x4 checkpoint3Matrix;
+	mat4x4 checkpoint4Matrix;
+	mat4x4 checkpoint5Matrix;
+	mat4x4 checkpoint6Matrix;
+	mat4x4 checkpoint7Matrix;
 	
 };

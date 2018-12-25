@@ -202,10 +202,40 @@ update_status ModulePlayer::Update(float dt)
 		laps =+ 1;
 	}
 
-	if (CarPosX > 169 && CarPosX < 184 && CarPosZ > 27 && CarPosZ < 28)
+	if (CarPosX > 165 && CarPosX < 195 && CarPosZ > -48 && CarPosZ < -46)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint2 = true;
+	}
+
+	if (CarPosX > -202 && CarPosX < -200 && CarPosZ > -129 && CarPosZ < -100)
+	{
+		App->audio->PlayFx(App->audio->checkpointFx);
+		checkpoint3 = true;
+	}
+
+	if (CarPosX > -275 && CarPosX < -245 && CarPosZ > 260 && CarPosZ < 261)
+	{
+		App->audio->PlayFx(App->audio->checkpointFx);
+		checkpoint4 = true;
+	}
+
+	if (CarPosX > 262 && CarPosX < 263 && CarPosZ > 100 && CarPosZ < 115)
+	{
+		App->audio->PlayFx(App->audio->checkpointFx);
+		checkpoint5 = true;
+	}
+
+	if (CarPosX > 310 && CarPosX < 323 && CarPosZ > -222 && CarPosZ < -220)
+	{
+		App->audio->PlayFx(App->audio->checkpointFx);
+		checkpoint6 = true;
+	}
+
+	if (CarPosX > -154 && CarPosX < -152 && CarPosZ > -269 && CarPosZ < -259)
+	{
+		App->audio->PlayFx(App->audio->checkpointFx);
+		checkpoint7 = true;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
@@ -215,14 +245,37 @@ update_status ModulePlayer::Update(float dt)
 			Respawn({CHECKPOINT1});
 			ChooseMatrix(1);
 		}
-		else if (checkpoint1 == true && checkpoint2 == true)
+		else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == false)
 		{
 			Respawn({CHECKPOINT2});
 			ChooseMatrix(2);
 		}
+		else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == false)
+		{
+			Respawn({CHECKPOINT3});
+			ChooseMatrix(3);
+		}
+		else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == true && checkpoint5 == false)
+		{
+			Respawn({CHECKPOINT4});
+			ChooseMatrix(4);
+		}
+		else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == true && checkpoint5 == true && checkpoint6 == false)
+		{
+			Respawn({CHECKPOINT5});
+			ChooseMatrix(5);
+		}
+		else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == true && checkpoint5 == true && checkpoint6 == true && checkpoint7 == false)
+		{
+			Respawn({CHECKPOINT6});
+			ChooseMatrix(6);
+		}
+		else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == true && checkpoint5 == true && checkpoint6 == true && checkpoint7 == true)
+		{
+			Respawn({CHECKPOINT7});
+			ChooseMatrix(7);
+		}
 	}
-
-	
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
@@ -304,9 +357,59 @@ void ModulePlayer::ChooseMatrix(int num)
 			(1, 0, 180, 0,
 			0, 1, 0, 0,
 			0, 0, 1, 0,
-			182, 2, 40, 0);
+			182, 2, -65, 0);
 
 		vehicle->SetTransform(checkpoint2Matrix.M);
+	}
+	else if (num == 3)
+	{
+		checkpoint3Matrix = mat4x4
+			(1, 0, 4, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			-205, 2, -117, 0);
+
+		vehicle->SetTransform(checkpoint3Matrix.M);
+	}
+	else if (num == 4)
+	{
+		checkpoint4Matrix = mat4x4
+			(1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			-260, 2, 270, 0);
+
+		vehicle->SetTransform(checkpoint4Matrix.M);
+	}
+	else if (num == 5)
+	{
+		checkpoint5Matrix = mat4x4
+			(1, 0, 0, 0,
+			0, 1, 0, 0,
+			4, 0, 1, 0,
+			264, 2, 107, 0);
+
+		vehicle->SetTransform(checkpoint5Matrix.M);
+	}
+	else if (num == 6)
+	{
+		checkpoint6Matrix = mat4x4
+			(1, 0, 180, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			316, 2, -225, 0);
+
+		vehicle->SetTransform(checkpoint6Matrix.M);
+	}
+	else if (num == 7)
+	{
+		checkpoint7Matrix = mat4x4
+			(1, 0, 0, 0,
+			0, 1, 0, 0,
+			4, 0, 1, 0,
+			-150, 2, -263, 0);
+
+		vehicle->SetTransform(checkpoint7Matrix.M);
 	}
 }
 
