@@ -35,3 +35,5 @@ extern Color Grey;
 extern Color Grey2;
 extern Color Brown;
 extern Color Blue2;
+extern Color Skin;
+extern Color Skin2;
