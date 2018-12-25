@@ -241,5 +241,32 @@ void ModuleSceneIntro::PeopleRender()
 
 void ModuleSceneIntro::BuildingsRender() 
 {
+	num_buildings = 75;
 
+	BodySize littleBuilding = {15,50,15};
+	BodySize midBuilding = {20,50,20};
+	BodySize bigBuilding = {25,50,25};
+
+	BodySize BuildingsSize[75] = { littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, littleBuilding, midBuilding, bigBuilding, };
+	vec3 BuildingsPosition[75] = { {360,25,0}, {340,25,40}, {390,25,120}, {390,25,170}, {390,25,220}, {150,25,27}, {150,25,68}, {150,25,-30}, {150,25,-70}, {210,25,40}, {220,25,10}, {215,25,-20}, {215,25,-60}, {293,25,40}, {120,25,-85}, {-200,25,-85}, {95,25,-80}, {60,25,-85}, {0,25,-75}, {-35,25,-80}, {-70,25,-85}, {-110,25,-80}, {-145,25,-80}, {-173,25,-80}, {120,25,-145}, {-200,25,-145}, {95,25,-145}, {60,25,-145}, {0,25,-145}, {-35,25,-145}, {-70,25,-145}, {-110,25,-145}, {-145,25,-145}, {-173,25,-145}, {-230,25,-64}, {-230,25,-30}, {-230,25,0}, {-230,25,45}, {-230,25,75}, {-230,25,100}, {-230,25,140}, {-230,25,180}, {-230,25,225}, {-310,25,-64}, {-310,25,-30}, {-310,25,0}, {-310,25,45}, {-310,25,75}, {-310,25,100}, {-310,25,140}, {-310,25,180}, {-310,25,225}, {-230,25,250}, {-310,25,250}, {-150,25,290}, {-175,25,290}, {-200,25,290}, {-150,25,280}, {-150,25,240}, {-150,25,200}, {-150,25,165}, {-80,25,280}, {-80,25,240}, {-80,25,165}, {-80,25,200} };
+
+	for (int i = 0; i < num_buildings; i++) 
+	{
+		BuildingsCubes.PushBack(new Cube(BuildingsSize[i].sizeX, BuildingsSize[i].sizeY, BuildingsSize[i].sizeZ));
+		BuildingsCubes[i]->SetPos(BuildingsPosition[i].x, BuildingsPosition[i].y, BuildingsPosition[i].z);
+		bodyBuildingsCubes.PushBack(App->physics->AddBody(*(BuildingsCubes[i]), 0.0f));
+		if (i % 4 == 0) 
+		{
+			BuildingsCubes[i]->color = Green2;
+		}
+		else if (i % 3 == 0)
+		{
+			BuildingsCubes[i]->color = DarkBlue;
+		}
+		else if (i % 2 == 0) 
+		{
+			BuildingsCubes[i]->color = DarkBrown;
+		}
+		else BuildingsCubes[i]->color = Grey3;
+	}
 }
