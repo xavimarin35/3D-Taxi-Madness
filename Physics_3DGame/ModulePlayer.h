@@ -36,37 +36,39 @@ public:
 
 public:
 
-	PhysVehicle3D* vehicle;
-	float turn;
-	float acceleration;
-	float brake;
+	PhysVehicle3D*	vehicle;
+	float			turn;
+	float			acceleration;
+	float			brake;
 
-	btTransform newCarPos;
-	vec3 initialCarPos;
-	vec3 newCarDirection;
-	vec3 newCameraPos;
-	vec3 viewCar;
+	btTransform		newCarPos;
+	vec3			initialCarPos;
+	vec3			newCarDirection;
+	vec3			newCameraPos;
+	vec3			viewCar;
 
-	int laps = 0;
-	int laps_time = 0;
-	Timer timer;
+	int				laps = 0;
+	int				laps_time = 0;
+	Timer			timer;
 
-	bool time_started = false;
-	bool checkpoint1 = false;
-	bool checkpoint2 = false;
-	bool checkpoint3 = false;
-	bool checkpoint4 = false;
-	bool checkpoint5 = false;
-	bool checkpoint6 = false;
-	bool checkpoint7 = false;
+	bool			time_started	= false;
+	bool			checkpoint1		= false;
+	bool			checkpoint2		= false;
+	bool			checkpoint3		= false;
+	bool			checkpoint4		= false;
+	bool			checkpoint5		= false;
+	bool			checkpoint6		= false;
+	bool			checkpoint7		= false;
+	bool			win				= false;
+	bool			lose			= false;
 
-	mat4x4 initialPosMatrix;
-	mat4x4 checkpoint1Matrix;
-	mat4x4 checkpoint2Matrix;
-	mat4x4 checkpoint3Matrix;
-	mat4x4 checkpoint4Matrix;
-	mat4x4 checkpoint5Matrix;
-	mat4x4 checkpoint6Matrix;
-	mat4x4 checkpoint7Matrix;
+	mat4x4			initialPosMatrix;
+	mat4x4			checkpoint1Matrix;
+	mat4x4			checkpoint2Matrix;
+	mat4x4			checkpoint3Matrix;
+	mat4x4			checkpoint4Matrix;
+	mat4x4			checkpoint5Matrix;
+	mat4x4			checkpoint6Matrix;
+	mat4x4			checkpoint7Matrix;
 	
 };

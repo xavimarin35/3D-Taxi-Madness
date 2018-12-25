@@ -32,6 +32,11 @@ bool ModuleSceneIntro::CleanUp()
 {
 	LOG("Unloading Intro scene");
 
+	BuildingsCubes.Clear();
+	PeopleCubes.Clear();
+	DetailsCubes.Clear();
+	RoadCubes.Clear();
+
 	return true;
 }
 
@@ -42,10 +47,14 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
-	// 3 minutes to complete the level
-	if (clock.Read() >= 1800000)
+	if (App->player->win == true) 
 	{
-		return UPDATE_ERROR;
+		CleanUp();
+	}
+	
+	if (App->player->lose == true) 
+	{
+		CleanUp();
 	}
 
 	for (int i = 0; i < num_floors; i++)

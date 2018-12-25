@@ -147,7 +147,7 @@ bool ModulePlayer::CleanUp()
 
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
-{
+{	
 	turn = acceleration = brake = 0.0f;
 
 	//FX motor noise
@@ -193,7 +193,7 @@ update_status ModulePlayer::Update(float dt)
 	float CarPosX = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getX();
 	float CarPosZ = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getZ();
 
-	if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11) 
+	if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint1 == false) 
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint1 = true;
@@ -201,38 +201,46 @@ update_status ModulePlayer::Update(float dt)
 		time_started = true;
 		laps =+ 1;
 	}
+	else if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint6 == true && timer.Read() <= 180000) 
+	{
+		win = true;
+	}
+	else if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint6 == true && timer.Read() > 180000) 
+	{
+		lose = true;
+	}
 
-	if (CarPosX > 165 && CarPosX < 195 && CarPosZ > -48 && CarPosZ < -46)
+	if (CarPosX > 165 && CarPosX < 195 && CarPosZ > -48 && CarPosZ < -46 && checkpoint1 == true)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint2 = true;
 	}
 
-	if (CarPosX > -202 && CarPosX < -200 && CarPosZ > -129 && CarPosZ < -100)
+	if (CarPosX > -202 && CarPosX < -200 && CarPosZ > -129 && CarPosZ < -100 && checkpoint2 == true)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint3 = true;
 	}
 
-	if (CarPosX > -275 && CarPosX < -245 && CarPosZ > 260 && CarPosZ < 261)
+	if (CarPosX > -275 && CarPosX < -245 && CarPosZ > 260 && CarPosZ < 261 && checkpoint3 == true)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint4 = true;
 	}
 
-	if (CarPosX > 262 && CarPosX < 263 && CarPosZ > 100 && CarPosZ < 115)
+	if (CarPosX > 262 && CarPosX < 263 && CarPosZ > 100 && CarPosZ < 115 && checkpoint4 == true)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint5 = true;
 	}
 
-	if (CarPosX > 310 && CarPosX < 323 && CarPosZ > -222 && CarPosZ < -220)
+	if (CarPosX > 310 && CarPosX < 323 && CarPosZ > -222 && CarPosZ < -220 && checkpoint5 == true)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint6 = true;
 	}
 
-	if (CarPosX > -154 && CarPosX < -152 && CarPosZ > -269 && CarPosZ < -259)
+	if (CarPosX > -154 && CarPosX < -152 && CarPosZ > -269 && CarPosZ < -259 && checkpoint6 == true)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint7 = true;
