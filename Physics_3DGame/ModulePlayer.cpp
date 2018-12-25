@@ -120,6 +120,15 @@ bool ModulePlayer::Start()
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(380, 2, 0);
 
+	//initialPosMatrix = mat4x4
+	//	(0.8f, 0, 0.6f, 0,
+	//		0, 1, 0, 0,
+	//		-0.8509035f, 0, 0.5253220f, 0,
+	//		0, 0, 0, 1);
+
+	//vehicle->SetTransform(initialPosMatrix.M);
+
+
 	//title values
 	laps = 0;
 	timer.Stop();
@@ -167,7 +176,6 @@ update_status ModulePlayer::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 	{
-		vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0,0,0 });
 		timer.Start();
 		timer.Stop();
 		Respawn({ INITIAL_POS });
@@ -241,6 +249,9 @@ void ModulePlayer::MySetPos(vec3 newPos)
 void ModulePlayer::Respawn(vec3 respawn_pos) 
 {
 	MySetPos(respawn_pos);
+	vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0,0,0 });
+	vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
+
 }
 
 

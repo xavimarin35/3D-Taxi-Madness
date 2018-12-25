@@ -43,6 +43,9 @@ public:
 	Timer timer;
 
 	bool checkpoint1 = false;
+	bool checkpoint2 = false;
 
+	mat4x4 initialPosMatrix;
 
+	
 };

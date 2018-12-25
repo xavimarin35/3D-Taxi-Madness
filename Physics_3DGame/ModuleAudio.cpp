@@ -41,7 +41,7 @@ bool ModuleAudio::Init()
 		ret = false;
 	}
 
-	PlayMusic("assets/audio/Laserpack.ogg");
+	//PlayMusic("assets/audio/Laserpack.ogg");
 
 	return ret;
 }
