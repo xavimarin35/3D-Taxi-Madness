@@ -18,36 +18,37 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
+	message = "RUN AWAY FROM GANGSTERS!";
 
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
 	
-	// Part de sota, prima i llarga, negra
-	car.chassis_size.Set(2, 0.5, 5);
-	car.chassis_offset.Set(0, 1.2, 0);
+	// Part de sota, groga
+	car.chassis_size.Set(2, 0.8, 6);
+	car.chassis_offset.Set(0, 1.45, 0);
 
-	// Cub davant, negre
-	car.upper_chassis.Set(2, 1.2, 1.5);
-	car.upper_chassis_offset.Set(0, 2.0, 1.8);
+	// Part de dalt, groga
+	car.upper_chassis.Set(2, 0.8, 4);
+	car.upper_chassis_offset.Set(0, 2.2, -0.2);
 
 	// Rectangle darrera, negre
-	car.upper_chassis2.Set(2, 1.2, 2);
-	car.upper_chassis2_offset.Set(0, 2.0, -2.0);
+	car.upper_chassis2.Set(1.7, 0.6, 0.1);
+	car.upper_chassis2_offset.Set(0, 2.2, -2.2);
 
-	// Part del mig, rectangle groc
-	car.middle_chassis.Set(2, 1.2, 2.1);
-	car.middle_chassis_offset.Set(0, 2.0, 0);
+	// Cartell de dalt, vermell
+	car.middle_chassis.Set(1, 0.3, 0.3);
+	car.middle_chassis_offset.Set(0, 2.7, 0);
 
-	// Part de dalt, rectangle llarg negre
-	car.top_chassis.Set(2, 0.4, 3);
-	car.top_chassis_offset.Set(0, 2.8, 0);
+	// Finestres, negres
+	car.top_chassis.Set(2.1, 0.5, 2.7);
+	car.top_chassis_offset.Set(0, 2.2, -0.2);
 
 
 	car.mass = 1200.0f;
 	car.suspensionStiffness = 15.88f;
-	car.suspensionCompression = 3.0f;
-	car.suspensionDamping = 1.0f;
+	car.suspensionCompression = 5.0f;
+	car.suspensionDamping = 10.0f;
 	car.maxSuspensionTravelCm = 1000.0f;
 	car.frictionSlip = 50.5;
 	car.maxSuspensionForce = 6000.0f;
@@ -124,7 +125,7 @@ bool ModulePlayer::Start()
 			(1, 0, 0, 0,
 			0, 1, 0, 0,
 			0, 0, 1, 0,
-			380, 2, 0, 0);
+			380, 2, -10, 0);
 
 	vehicle->SetTransform(initialPosMatrix.M);
 
@@ -150,39 +151,83 @@ update_status ModulePlayer::Update(float dt)
 {	
 	turn = acceleration = brake = 0.0f;
 
-	//FX motor noise
-	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN)
+	if (win == false && lose == false)
 	{
-		App->audio->PlayFx(App->audio->accelerateFx);
-	}
+		//FX motor noise
+		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN)
+		{
+			App->audio->PlayFx(App->audio->accelerateFx);
+		}
 
-	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-	{
-		acceleration = MAX_ACCELERATION * 2;
-	}
+		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+		{
+			acceleration = MAX_ACCELERATION * 2;
+		}
 
-	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-	{
-		if(turn < TURN_DEGREES)
-			turn +=  TURN_DEGREES;
-	}
+		if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+		{
+			if (turn < TURN_DEGREES)
+				turn += TURN_DEGREES;
+		}
 
-	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-	{
-		if(turn > -TURN_DEGREES)
-			turn -= TURN_DEGREES;
-	}
+		if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+		{
+			if (turn > -TURN_DEGREES)
+				turn -= TURN_DEGREES;
+		}
 
-	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-	{
-		if (vehicle->GetKmh() > 0.0f){ brake = BRAKE_POWER; }
+		if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+		{
+			if (vehicle->GetKmh() > 0.0f) { brake = BRAKE_POWER; }
 
-		if (vehicle->GetKmh() <= 0.0f) { acceleration = -(MAX_ACCELERATION / 2); }
+			if (vehicle->GetKmh() <= 0.0f) { acceleration = -(MAX_ACCELERATION / 2); }
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		{
+			if (checkpoint1 == true && checkpoint2 == false)
+			{
+				Respawn({ CHECKPOINT1 });
+				ChooseMatrix(1);
+			}
+			else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == false)
+			{
+				Respawn({ CHECKPOINT2 });
+				ChooseMatrix(2);
+			}
+			else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == false)
+			{
+				Respawn({ CHECKPOINT3 });
+				ChooseMatrix(3);
+			}
+			else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == true && checkpoint5 == false)
+			{
+				Respawn({ CHECKPOINT4 });
+				ChooseMatrix(4);
+			}
+			else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == true && checkpoint5 == true && checkpoint6 == false)
+			{
+				Respawn({ CHECKPOINT5 });
+				ChooseMatrix(5);
+			}
+			else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == true && checkpoint5 == true && checkpoint6 == true && checkpoint7 == false)
+			{
+				Respawn({ CHECKPOINT6 });
+				ChooseMatrix(6);
+			}
+			else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == true && checkpoint5 == true && checkpoint6 == true && checkpoint7 == true)
+			{
+				Respawn({ CHECKPOINT7 });
+				ChooseMatrix(7);
+			}
+		}
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 	{
-		checkpoint1 = false;
+		checkpoint1 = checkpoint2 = checkpoint3 = checkpoint4 = checkpoint5 = checkpoint6 = checkpoint7 = false;
+		win = false;
+		lose = false;
 		timer.Start();
 		timer.Stop();
 		Respawn({ INITIAL_POS });
@@ -194,6 +239,22 @@ update_status ModulePlayer::Update(float dt)
 	float CarPosX = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getX();
 	float CarPosZ = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getZ();
 
+	if (win == true) 
+	{
+		message = "CONGRATULATIONS! YOU SCAPED FROM THE GANGSTERS!";
+		timer.Stop();
+		vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
+		vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
+	}
+
+	if (lose == true) 
+	{
+		message = "YOU WILL RECEIVE NOW A TYPICAL SPANISH 'ENSALADA DE TIBIAS'.";
+		timer.Stop();
+		vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
+		vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
+	}
+
 	if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint1 == false) 
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
@@ -201,12 +262,13 @@ update_status ModulePlayer::Update(float dt)
 		timer.Start();
 		time_started = true;
 		laps =+ 1;
+		message = "RACE STARTED!";
 	}
-	else if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint6 == true && timer.Read() <= 180000) 
+	else if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint7 == true && timer.Read() <= 170000) 
 	{
-		win = true;
+		win = true; 
 	}
-	else if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint6 == true && timer.Read() > 180000) 
+	else if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint7 == true && timer.Read() > 170000) 
 	{
 		lose = true;
 	}
@@ -215,75 +277,66 @@ update_status ModulePlayer::Update(float dt)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint2 = true;
+		if (timer.Read() < 25000) 
+		{
+			message = "YOU STARTED WELL!";
+		}
+		else message = "A BAD START, C'MON!";
 	}
 
 	if (CarPosX > -202 && CarPosX < -200 && CarPosZ > -129 && CarPosZ < -100 && checkpoint2 == true)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint3 = true;
+		if (timer.Read() < 35000)
+		{
+			message = "CONTINUE LIKE THIS!";
+		}
+		else message = "GANGSTERS ARE JUST BEHIND YOU!";
 	}
 
 	if (CarPosX > -275 && CarPosX < -245 && CarPosZ > 260 && CarPosZ < 261 && checkpoint3 == true)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint4 = true;
+		if (timer.Read() < 50000)
+		{
+			message = "YOU ARE DOING OK, DON'T RELAX!";
+		}
+		else message = "BAD TIMING, BUT YOU CAN STILL DO IT!";
 	}
 
 	if (CarPosX > 262 && CarPosX < 263 && CarPosZ > 100 && CarPosZ < 115 && checkpoint4 == true)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint5 = true;
+		if (timer.Read() < 75000)
+		{
+			message = "YOU HAVE ALMOST DONE IT!";
+		}
+		else message = "YOU SHOULD ACCELERATE A LITTLE BIT MORE!";
 	}
 
 	if (CarPosX > 310 && CarPosX < 323 && CarPosZ > -222 && CarPosZ < -220 && checkpoint5 == true)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint6 = true;
+		if (timer.Read() < 115000)
+		{
+			message = "STAY FOCUSED, THE END IS NEAR!";
+		}
+		else message = "THE GANGSTERS ARE ABOUT TO CATCH YOU!";
 	}
 
 	if (CarPosX > -154 && CarPosX < -152 && CarPosZ > -269 && CarPosZ < -259 && checkpoint6 == true)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint7 = true;
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	{
-		if (checkpoint1 == true && checkpoint2 == false)
+		if (timer.Read() < 140000)
 		{
-			Respawn({CHECKPOINT1});
-			ChooseMatrix(1);
+			message = "THE RACE IS ALMOST OVER, YOU'VE DONE IT!";
 		}
-		else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == false)
-		{
-			Respawn({CHECKPOINT2});
-			ChooseMatrix(2);
-		}
-		else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == false)
-		{
-			Respawn({CHECKPOINT3});
-			ChooseMatrix(3);
-		}
-		else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == true && checkpoint5 == false)
-		{
-			Respawn({CHECKPOINT4});
-			ChooseMatrix(4);
-		}
-		else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == true && checkpoint5 == true && checkpoint6 == false)
-		{
-			Respawn({CHECKPOINT5});
-			ChooseMatrix(5);
-		}
-		else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == true && checkpoint5 == true && checkpoint6 == true && checkpoint7 == false)
-		{
-			Respawn({CHECKPOINT6});
-			ChooseMatrix(6);
-		}
-		else if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true && checkpoint4 == true && checkpoint5 == true && checkpoint6 == true && checkpoint7 == true)
-		{
-			Respawn({CHECKPOINT7});
-			ChooseMatrix(7);
-		}
+		else message = "YOU ARE ALMOST DEAD, SAY YOUR LAST WORDS.";
 	}
 
 	vehicle->ApplyEngineForce(acceleration);
@@ -297,8 +350,8 @@ update_status ModulePlayer::Update(float dt)
 	int lap_min = lap_sec / 60;
 	lap_sec -= lap_min * 60;
 
-	char title[80];
-	sprintf_s(title, "RUN AWAY FROM GANGSTERS! || Speed: %.1f Km/h || Laps: %u/1 || Time: %.2i:%.2i", vehicle->GetKmh(), laps, lap_min, lap_sec);
+	char title[200];
+	sprintf_s(title, "%s || Time: %.2i:%.2i", message, lap_min, lap_sec);
 	App->window->SetTitle(title);
 
 	LOG("x = %.1f", CarPosX);
@@ -406,7 +459,7 @@ void ModulePlayer::ChooseMatrix(int num)
 			(1, 0, 180, 0,
 			0, 1, 0, 0,
 			0, 0, 1, 0,
-			316, 2, -225, 0);
+			317, 2, -225, 0);
 
 		vehicle->SetTransform(checkpoint6Matrix.M);
 	}

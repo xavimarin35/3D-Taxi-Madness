@@ -41,3 +41,4 @@ extern Color Skin2;
 extern Color DarkBlue;
 extern Color Grey3;
 extern Color Green2;
+extern Color DarkOrange;

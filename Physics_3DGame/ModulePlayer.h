@@ -49,6 +49,7 @@ public:
 
 	int				laps = 0;
 	int				laps_time = 0;
+	char*			message;
 	Timer			timer;
 
 	bool			time_started	= false;

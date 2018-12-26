@@ -17,3 +17,4 @@ Color DarkBrown = Color(0.25f, 0.19f, 0.09f);
 Color Skin = Color(1.0f, 0.7f, 0.5f);
 Color Skin2 = Color(0.5f, 0.3f, 0.2f);
 Color DarkBlue = Color(0.05f, 0.06f, 0.23f);
+Color DarkOrange = Color(0.41f, 0.22f, 0.03f);

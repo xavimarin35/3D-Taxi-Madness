@@ -44,7 +44,7 @@ void PhysVehicle3D::Render()
 	btQuaternion q = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offset(info.chassis_offset.x, info.chassis_offset.y, info.chassis_offset.z);
 	offset = offset.rotate(q.getAxis(), q.getAngle());
-	chassis.color = Black;
+	chassis.color = Yellow;
 
 	chassis.transform.M[12] += offset.getX();
 	chassis.transform.M[13] += offset.getY();
@@ -58,7 +58,7 @@ void PhysVehicle3D::Render()
 	btQuaternion w = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offset1(info.upper_chassis_offset.x, info.upper_chassis_offset.y, info.upper_chassis_offset.z);
 	offset1 = offset1.rotate(w.getAxis(), q.getAngle());
-	upper1.color = Black;
+	upper1.color = Yellow;
 
 	upper1.transform.M[12] += offset1.getX();
 	upper1.transform.M[13] += offset1.getY();
@@ -86,7 +86,7 @@ void PhysVehicle3D::Render()
 	btQuaternion r = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offset_middle(info.middle_chassis_offset.x, info.middle_chassis_offset.y, info.middle_chassis_offset.z);
 	offset_middle = offset_middle.rotate(r.getAxis(), q.getAngle());
-	middle.color = Yellow;
+	middle.color = Red;
 
 	middle.transform.M[12] += offset_middle.getX();
 	middle.transform.M[13] += offset_middle.getY();
