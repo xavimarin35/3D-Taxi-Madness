@@ -47,6 +47,11 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
+	for (int i = 53; i < 59; i++) 
+	{
+		ChangeColors(i);
+	}
+
 	for (int i = 0; i < num_floors; i++)
 	{
 		FloorCubes[i]->Render();
@@ -78,6 +83,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	}
 
 	return UPDATE_CONTINUE;
+
 }
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
@@ -119,7 +125,7 @@ void ModuleSceneIntro::FloorsRender()
 		FloorCubes[i]->SetPos(FloorPosition[i].x, FloorPosition[i].y, FloorPosition[i].z);
 		//FloorCubes[i]->SetRotation(FloorRotation[i].angle, FloorRotation[i].axis_pos);
 		if (i == 0) { FloorCubes[i]->color = Grey2; }
-		else if (i == 1) { FloorCubes[i]->color = Blue; }
+		else if (i == 1) { FloorCubes[i]->color = Blue2; }
 		bodyFloorCubes.PushBack(App->physics->AddBody(*(FloorCubes[i]), 0.0f));
 	}
 }
@@ -135,7 +141,7 @@ void ModuleSceneIntro::LimitsRender()
 	{
 		LimitCubes.PushBack(new Cube(LimitsSize[j].sizeX, LimitsSize[j].sizeY, LimitsSize[j].sizeZ));
 		LimitCubes[j]->SetPos(LimitsPosition[j].x, LimitsPosition[j].y, LimitsPosition[j].z);
-		//LimitCubes[j]->color = Black;
+		LimitCubes[j]->color = Blue2;
 		bodyLimitCubes.PushBack(App->physics->AddBody(*(LimitCubes[j]), 0.0f));
 	}
 }
@@ -168,14 +174,17 @@ void ModuleSceneIntro::RoadRender()
 
 void ModuleSceneIntro::DetailsRender() 
 {
-	num_details = 47;
+	num_details = 59;
 
 	BodySize pas_zebra = { 4,2,20 };
 	BodyRotation no_rotation = { 0,{0,1,0} };
 
-	BodySize DetailsSize[47] = { {2,10,2}, {2,10,2}, {18,3.3,2}, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra };
-	vec3 DetailsPosition[47] = { {390,10,15}, {370,10,15}, {380,13,15}, {182,-0.4,-23}, {188,-0.4,-23}, {176,-0.4,-23}, {170,-0.4,-23}, {194,-0.4,-23}, {100,-0.4,-116}, {100,-0.4,-110}, {100,-0.4,-122}, {100,-0.4,-128}, {100,-0.4,-103}, {-150,-0.4,-116}, {-150,-0.4,-110}, {-150,-0.4,-122}, {-150,-0.4,-128}, {-150,-0.4,-103}, {248,-0.4,107.2}, {248,-0.4,113.2}, {248,-0.4,101.2}, {137,-0.4,-306}, {137,-0.4,-300}, {137,-0.4,-294}, {137,-0.4,-312}, {137,-0.4,-318}, {-247.5,-0.4,0}, {-265.5,-0.4,0}, {-271.5,-0.4,0}, {-253.5,-0.4,0}, {-259.5,-0.4,0}, {-247.5,-0.4,200}, {-265.5,-0.4,200}, {-271.5,-0.4,200}, {-253.5,-0.4,200}, {-259.5,-0.4,200}, {362.5,-0.4,200}, {356.5,-0.4,200}, {350.5,-0.4,200}, {368.5,-0.4,200}, {374.5,-0.4,200}, {311,-0.4,-60}, {317,-0.4,-60}, {323,-0.4,-60}, {311,-0.4,-200}, {317,-0.4,-200}, {323,-0.4,-200} };
-	BodyRotation DetailsRotation[47] = { no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation };
+	BodySize pal = {2,15,2};
+	BodySize semafor = {3,3,3};
+
+	BodySize DetailsSize[59] = { {2,10,2}, {2,10,2}, {18,3.3,2}, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pal, pal, pal, pal, pal, pal, semafor, semafor, semafor, semafor, semafor, semafor };
+	vec3 DetailsPosition[59] = { {390,10,15}, {370,10,15}, {380,13,15}, {182,-0.4,-23}, {188,-0.4,-23}, {176,-0.4,-23}, {170,-0.4,-23}, {194,-0.4,-23}, {100,-0.4,-116}, {100,-0.4,-110}, {100,-0.4,-122}, {100,-0.4,-128}, {100,-0.4,-103}, {-150,-0.4,-116}, {-150,-0.4,-110}, {-150,-0.4,-122}, {-150,-0.4,-128}, {-150,-0.4,-103}, {248,-0.4,107.2}, {248,-0.4,113.2}, {248,-0.4,101.2}, {137,-0.4,-306}, {137,-0.4,-300}, {137,-0.4,-294}, {137,-0.4,-312}, {137,-0.4,-318}, {-247.5,-0.4,0}, {-265.5,-0.4,0}, {-271.5,-0.4,0}, {-253.5,-0.4,0}, {-259.5,-0.4,0}, {-247.5,-0.4,200}, {-265.5,-0.4,200}, {-271.5,-0.4,200}, {-253.5,-0.4,200}, {-259.5,-0.4,200}, {362.5,-0.4,200}, {356.5,-0.4,200}, {350.5,-0.4,200}, {368.5,-0.4,200}, {374.5,-0.4,200}, {311,-0.4,-60}, {317,-0.4,-60}, {323,-0.4,-60}, {311,-0.4,-200}, {317,-0.4,-200}, {323,-0.4,-200}, {190,10,-110}, {-268.5,10,-115}, {-245,10,340.5}, {306,10,122}, {309,10,-320.5}, {-102,10,-277}, {190,19,-110}, {-268.5,19,-115}, {-245,19,340.5}, {306,19,122}, {309,19,-320.5}, {-102,19,-277} };
+	BodyRotation DetailsRotation[59] = { no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, {45,{0,1,0}}, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, {45,{0,1,0}}, no_rotation, no_rotation, no_rotation, no_rotation };
 
 	for (int i = 0; i < num_details; i++) 
 	{
@@ -193,6 +202,10 @@ void ModuleSceneIntro::DetailsRender()
 		else if (i > 2 && i < 47)
 		{
 			DetailsCubes[i]->color = White;
+		}
+		else if (i >= 47 && i < 53) 
+		{
+			DetailsCubes[i]->color = Yellow;
 		}
 		bodyDetailsCubes.PushBack(App->physics->AddBody(*(DetailsCubes[i]), 0.0f));
 	}
@@ -256,16 +269,79 @@ void ModuleSceneIntro::BuildingsRender()
 		bodyBuildingsCubes.PushBack(App->physics->AddBody(*(BuildingsCubes[i]), 0.0f));
 		if (i % 4 == 0) 
 		{
-			BuildingsCubes[i]->color = Green2;
+			BuildingsCubes[i]->color = White;
 		}
 		else if (i % 3 == 0)
 		{
-			BuildingsCubes[i]->color = DarkBlue;
+			BuildingsCubes[i]->color = Grey;
 		}
 		else if (i % 2 == 0) 
 		{
-			BuildingsCubes[i]->color = DarkBrown;
+			BuildingsCubes[i]->color = Grey2;
 		}
 		else BuildingsCubes[i]->color = Grey3;
+	}
+}
+
+void ModuleSceneIntro::ChangeColors(int i) 
+{
+	// Checkpoint 2
+	if (i == 53)
+	{
+		if (App->player->checkpoint2 == false)
+		{
+			DetailsCubes[i]->color = Red;
+		}
+		else DetailsCubes[i]->color = Green;
+	}
+
+	// Checkpoint 3
+	if (i == 54)
+	{
+		if (App->player->checkpoint3 == false)
+		{
+			DetailsCubes[i]->color = Red;
+		}
+		else DetailsCubes[i]->color = Green;
+	}
+
+	// Checkpoint 4
+	if (i == 55)
+	{
+		if (App->player->checkpoint4 == false)
+		{
+			DetailsCubes[i]->color = Red;
+		}
+		else DetailsCubes[i]->color = Green;
+	}
+
+	// Checkpoint 5
+	if (i == 56)
+	{
+		if (App->player->checkpoint5 == false)
+		{
+			DetailsCubes[i]->color = Red;
+		}
+		else DetailsCubes[i]->color = Green;
+	}
+
+	// Checkpoint 6
+	if (i == 57)
+	{
+		if (App->player->checkpoint6 == false)
+		{
+			DetailsCubes[i]->color = Red;
+		}
+		else DetailsCubes[i]->color = Green;
+	}
+
+	// Checkpoint 7
+	if (i == 58)
+	{
+		if (App->player->checkpoint7 == false)
+		{
+			DetailsCubes[i]->color = Red;
+		}
+		else DetailsCubes[i]->color = Green;
 	}
 }
