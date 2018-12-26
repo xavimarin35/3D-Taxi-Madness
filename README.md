@@ -19,6 +19,9 @@ In this game, we put ourselves in the skin of a taxist. We owe a lot of money to
 - Restart the level:
   - R
   
+- Map View:
+  - M 
+  
 ### IMPORTANT THINGS
 
 The level must be completed in less than 2:40 minutes, if you don't achieve it, gangsters will catch you!
