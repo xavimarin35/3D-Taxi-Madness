@@ -61,8 +61,8 @@ update_status ModuleCamera3D::Update(float dt)
 
 	if (followCamera == true && mapCamera == false)
 	{
-		vec3 newPos(0,0,0);
-		float speed = 3.0f * dt;
+		vec3 newPos(0,0,-10);
+		float speed = 10.0f * dt;
 
 		if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 			speed = 8.0f * dt;

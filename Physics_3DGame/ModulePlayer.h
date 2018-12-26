@@ -49,6 +49,8 @@ public:
 
 	int				laps = 0;
 	int				laps_time = 0;
+	int				lap_sec;
+	int				lap_min;
 	char*			message;
 	Timer			timer;
 

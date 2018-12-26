@@ -225,6 +225,7 @@ update_status ModulePlayer::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 	{
+		App->camera->ChangeCamera(false, false);
 		checkpoint1 = checkpoint2 = checkpoint3 = checkpoint4 = checkpoint5 = checkpoint6 = checkpoint7 = false;
 		win = false;
 		lose = false;
@@ -239,23 +240,6 @@ update_status ModulePlayer::Update(float dt)
 	float CarPosX = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getX();
 	float CarPosZ = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getZ();
 
-	if (win == true) 
-	{
-		App->audio->PlayFx(App->audio->winFx, 1);
-		message = "CONGRATULATIONS! YOU SCAPED FROM THE GANGSTERS!";
-		timer.Stop();
-		vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
-		vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
-	}
-
-	if (lose == true) 
-	{
-		App->audio->PlayFx(App->audio->loseFx, 1);
-		message = "YOU WILL RECEIVE NOW A TYPICAL SPANISH 'ENSALADA DE TIBIAS'.";
-		timer.Stop();
-		vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
-		vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
-	}
 
 	if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint1 == false) 
 	{
@@ -339,6 +323,37 @@ update_status ModulePlayer::Update(float dt)
 			message = "THE RACE IS ALMOST OVER, YOU'VE DONE IT!";
 		}
 		else message = "YOU ARE ALMOST DEAD, SAY YOUR LAST WORDS.";
+	}
+
+	//win condition
+	if (win == true)
+	{
+		checkpoint1 = false;
+		App->camera->ChangeCamera(true, false);
+		App->audio->PlayFx(App->audio->winFx, 1);
+		message = "CONGRATULATIONS! YOU SCAPED FROM THE GANGSTERS!";
+		timer.Stop();
+		/*lap_sec = timer.Read() / 1000;
+		lap_min = lap_sec / 60;*/
+		if (CarPosZ > 40 && CarPosZ < 41)
+		{
+			vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
+			vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
+		}
+	}
+
+	//lose condition
+	if (lose == true)
+	{
+		App->camera->ChangeCamera(true, false);
+		App->audio->PlayFx(App->audio->loseFx, 1);
+		message = "YOU WILL RECEIVE NOW A TYPICAL SPANISH 'ENSALADA DE TIBIAS'";
+		timer.Stop();
+		if (CarPosZ > 40 && CarPosZ < 41)
+		{
+			vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
+			vehicle->vehicle->getRigidBody()->setAngularVelocity({ 0, 0, 0 });
+		}
 	}
 
 	vehicle->ApplyEngineForce(acceleration);
