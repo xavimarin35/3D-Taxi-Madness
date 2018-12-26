@@ -241,6 +241,7 @@ update_status ModulePlayer::Update(float dt)
 
 	if (win == true) 
 	{
+		App->audio->PlayFx(App->audio->winFx, 1);
 		message = "CONGRATULATIONS! YOU SCAPED FROM THE GANGSTERS!";
 		timer.Stop();
 		vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
@@ -249,6 +250,7 @@ update_status ModulePlayer::Update(float dt)
 
 	if (lose == true) 
 	{
+		App->audio->PlayFx(App->audio->loseFx, 1);
 		message = "YOU WILL RECEIVE NOW A TYPICAL SPANISH 'ENSALADA DE TIBIAS'.";
 		timer.Stop();
 		vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });

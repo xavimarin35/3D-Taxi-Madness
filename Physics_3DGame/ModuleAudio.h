@@ -27,6 +27,7 @@ public:
 
 	int accelerateFx;
 	int checkpointFx;
+	int winFx, loseFx;
 
 private:
 
