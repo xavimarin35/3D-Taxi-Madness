@@ -314,7 +314,7 @@ update_status ModulePlayer::Update(float dt)
 		else message = "THE GANGSTERS ARE ABOUT TO CATCH YOU!";
 	}
 
-	if (CarPosX > -154 && CarPosX < -152 && CarPosZ > -269 && CarPosZ < -259 && checkpoint6 == true)
+	if (CarPosX > -154 && CarPosX < -152 && CarPosZ > -269 && CarPosZ < -255 && checkpoint6 == true)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint7 = true;
