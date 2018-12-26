@@ -47,16 +47,6 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
-	if (App->player->win == true) 
-	{
-		CleanUp();
-	}
-	
-	if (App->player->lose == true) 
-	{
-		CleanUp();
-	}
-
 	for (int i = 0; i < num_floors; i++)
 	{
 		FloorCubes[i]->Render();

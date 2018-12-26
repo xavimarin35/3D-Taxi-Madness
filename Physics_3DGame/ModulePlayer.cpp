@@ -44,7 +44,7 @@ bool ModulePlayer::Start()
 	car.top_chassis_offset.Set(0, 2.8, 0);
 
 
-	car.mass = 1000.0f;
+	car.mass = 1200.0f;
 	car.suspensionStiffness = 15.88f;
 	car.suspensionCompression = 3.0f;
 	car.suspensionDamping = 1.0f;
@@ -158,7 +158,7 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
-		acceleration = MAX_ACCELERATION;
+		acceleration = MAX_ACCELERATION * 2;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
@@ -182,6 +182,7 @@ update_status ModulePlayer::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 	{
+		checkpoint1 = false;
 		timer.Start();
 		timer.Stop();
 		Respawn({ INITIAL_POS });
