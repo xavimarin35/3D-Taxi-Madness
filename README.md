@@ -21,7 +21,7 @@ In this game, we put ourselves in the skin of a taxist. We owe a lot of money to
   
 ### IMPORTANT THINGS
 
-The level must be completed in less than 2:40 minutes, if you don't make to reach it, gangsters will catch you!
+The level must be completed in less than 2:40 minutes, if you don't achieve it, gangsters will catch you!
 
 The window of the game will show you some messages on each checkpoint, to tell you if you are doing good or you must run a bit more.
 
