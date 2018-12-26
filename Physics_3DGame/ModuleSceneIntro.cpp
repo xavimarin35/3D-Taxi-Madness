@@ -172,30 +172,30 @@ void ModuleSceneIntro::RoadRender()
 	}
 }
 
-void ModuleSceneIntro::DetailsRender() 
+void ModuleSceneIntro::DetailsRender()
 {
-	num_details = 59;
+	num_details = 74;
 
 	BodySize pas_zebra = { 4,2,20 };
 	BodyRotation no_rotation = { 0,{0,1,0} };
 
-	BodySize pal = {2,15,2};
-	BodySize semafor = {3,3,3};
+	BodySize pal = { 2,15,2 };
+	BodySize semafor = { 3,3,3 };
 
-	BodySize DetailsSize[59] = { {2,10,2}, {2,10,2}, {18,3.3,2}, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pal, pal, pal, pal, pal, pal, semafor, semafor, semafor, semafor, semafor, semafor };
-	vec3 DetailsPosition[59] = { {390,10,15}, {370,10,15}, {380,13,15}, {182,-0.4,-23}, {188,-0.4,-23}, {176,-0.4,-23}, {170,-0.4,-23}, {194,-0.4,-23}, {100,-0.4,-116}, {100,-0.4,-110}, {100,-0.4,-122}, {100,-0.4,-128}, {100,-0.4,-103}, {-150,-0.4,-116}, {-150,-0.4,-110}, {-150,-0.4,-122}, {-150,-0.4,-128}, {-150,-0.4,-103}, {248,-0.4,107.2}, {248,-0.4,113.2}, {248,-0.4,101.2}, {137,-0.4,-306}, {137,-0.4,-300}, {137,-0.4,-294}, {137,-0.4,-312}, {137,-0.4,-318}, {-247.5,-0.4,0}, {-265.5,-0.4,0}, {-271.5,-0.4,0}, {-253.5,-0.4,0}, {-259.5,-0.4,0}, {-247.5,-0.4,200}, {-265.5,-0.4,200}, {-271.5,-0.4,200}, {-253.5,-0.4,200}, {-259.5,-0.4,200}, {362.5,-0.4,200}, {356.5,-0.4,200}, {350.5,-0.4,200}, {368.5,-0.4,200}, {374.5,-0.4,200}, {311,-0.4,-60}, {317,-0.4,-60}, {323,-0.4,-60}, {311,-0.4,-200}, {317,-0.4,-200}, {323,-0.4,-200}, {190,10,-110}, {-268.5,10,-115}, {-245,10,340.5}, {306,10,122}, {309,10,-320.5}, {-102,10,-277}, {190,19,-110}, {-268.5,19,-115}, {-245,19,340.5}, {306,19,122}, {309,19,-320.5}, {-102,19,-277} };
-	BodyRotation DetailsRotation[59] = { no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, {45,{0,1,0}}, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, {45,{0,1,0}}, no_rotation, no_rotation, no_rotation, no_rotation };
+	BodySize DetailsSize[74] = { {2,10,2}, {2,10,2}, {18,3.3,2}, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pas_zebra, pal, pal, pal, pal, pal, pal, semafor, semafor, semafor, semafor, semafor, semafor, {0.2,0.2,0.2}, {0.2,0.2,0.2}, {1.6,0.2,0.2}, {1.6,0.2,0.2}, {0.2,1,0.2}, {0.2,0.9,0.2}, {1.6,0.2,0.2}, {1.6,0.2,0.2}, {0.2,2.1,0.2}, {0.2,1.1,0.2}, {0.2,2.1,0.2}, {0.2,2.1,0.2}, {1.3,0.2,0.2}, {1.3,0.2,0.2} };
+	vec3 DetailsPosition[74] = { {390,10,15}, {370,10,15}, {380,13,15}, {182,-0.4,-23}, {188,-0.4,-23}, {176,-0.4,-23}, {170,-0.4,-23}, {194,-0.4,-23}, {100,-0.4,-116}, {100,-0.4,-110}, {100,-0.4,-122}, {100,-0.4,-128}, {100,-0.4,-103}, {-150,-0.4,-116}, {-150,-0.4,-110}, {-150,-0.4,-122}, {-150,-0.4,-128}, {-150,-0.4,-103}, {248,-0.4,107.2}, {248,-0.4,113.2}, {248,-0.4,101.2}, {137,-0.4,-306}, {137,-0.4,-300}, {137,-0.4,-294}, {137,-0.4,-312}, {137,-0.4,-318}, {-247.5,-0.4,0}, {-265.5,-0.4,0}, {-271.5,-0.4,0}, {-253.5,-0.4,0}, {-259.5,-0.4,0}, {-247.5,-0.4,200}, {-265.5,-0.4,200}, {-271.5,-0.4,200}, {-253.5,-0.4,200}, {-259.5,-0.4,200}, {362.5,-0.4,200}, {356.5,-0.4,200}, {350.5,-0.4,200}, {368.5,-0.4,200}, {374.5,-0.4,200}, {311,-0.4,-60}, {317,-0.4,-60}, {323,-0.4,-60}, {311,-0.4,-200}, {317,-0.4,-200}, {323,-0.4,-200}, {190,10,-110}, {-268.5,10,-115}, {-245,10,340.5}, {306,10,122}, {309,10,-320.5}, {-102,10,-277}, {190,19,-110}, {-268.5,19,-115}, {-245,19,340.5}, {306,19,122}, {309,19,-320.5}, {-102,19,-277}, {380,13.4,13.9}, {380,12.6,13.9}, {382.5,13.9,13.9}, {382.5,12,13.9}, {381.8,13.4,13.9}, {383.2,12.5,13.9}, {382.5,12.95,13.9}, {377.5,12.95,13.9}, {377.1,12.95,13.9}, {378.3,13.4,13.9}, {375.6,12.95,13.9}, {374.3,12.95,13.9}, {374.95,12,13.9}, {374.95,13.9,13.9} };
+	BodyRotation DetailsRotation[74] = { no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, {-90,{0,1,0}}, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, {45,{0,1,0}}, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, {45,{0,1,0}}, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation };
 
-	for (int i = 0; i < num_details; i++) 
+	for (int i = 0; i < num_details; i++)
 	{
 		DetailsCubes.PushBack(new Cube(DetailsSize[i].sizeX, DetailsSize[i].sizeY, DetailsSize[i].sizeZ));
 		DetailsCubes[i]->SetPos(DetailsPosition[i].x, DetailsPosition[i].y, DetailsPosition[i].z);
 		DetailsCubes[i]->SetRotation(DetailsRotation[i].angle, DetailsRotation[i].axis_pos);
-		if (i == 0 || i == 1) 
+		if (i == 0 || i == 1)
 		{
 			DetailsCubes[i]->color = Black;
 		}
-		else if (i == 2) 
+		else if (i == 2)
 		{
 			DetailsCubes[i]->color = Yellow;
 		}
@@ -203,9 +203,13 @@ void ModuleSceneIntro::DetailsRender()
 		{
 			DetailsCubes[i]->color = White;
 		}
-		else if (i >= 47 && i < 53) 
+		else if (i >= 47 && i < 53)
 		{
 			DetailsCubes[i]->color = Yellow;
+		}
+		else if (i >= 53 && i < 74)
+		{
+			DetailsCubes[i]->color = Black;
 		}
 		bodyDetailsCubes.PushBack(App->physics->AddBody(*(DetailsCubes[i]), 0.0f));
 	}
@@ -219,8 +223,8 @@ void ModuleSceneIntro::PeopleRender()
 	BodySize body = { 1.5,2.5,1 };
 
 	BodySize PeopleSize[51] = { {}, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body, face, body };
-	vec3 PeoplePosition[51] = { {}, {180,4.2,-23}, {180,2.5,-23}, {245,4.2,109}, {245,2.5,109}, {250,4.2,102}, {250,2.5,102}, {137,4.2,-312}, {137,2.5,-312}, {-143,4.2,-113}, {-143,2.5,-113}, {-266,4.2,3}, {-266,2.5,3}, {170,4.2,-20}, {170,2.5,-20}, {-250,4.2,200}, {-250,2.5,200}, {-260,4.2,190}, {-260,2.5,190}, {360,4.2,200}, {360,2.5,200}, {315,4.2,-60}, {315,2.5,-60}, {370,4.2,190}, {370,2.5,190}, {320,4.2,-195}, {320,2.5,-195}, {240,4.2,113}, {240,2.5,113}, {104,4.2,-117}, {104,2.5,-117}, {104,4.2,-106}, {104,2.5,-106}, {-149,4.2,-121},{-149,2.5,-121},{-260,4.2,-6.5},{-260,2.5,-6.5},{-249,4.2,6},{-249,2.5,6},{143,4.2,-301},{143,2.5,-301},{130.5,4.2,-303.5},{130.5,2.5,-303.5},{},{},{},{},{},{},{},{} };
-	BodyRotation PeopleRotation[51] = { {}, no_rotation, no_rotation, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, no_rotation, no_rotation, no_rotation, no_rotation, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}} };
+	vec3 PeoplePosition[51] = { {}, {180,4.2,-23}, {180,2.5,-23}, {245,4.2,109}, {245,2.5,109}, {250,4.2,102}, {250,2.5,102}, {137,4.2,-312}, {137,2.5,-312}, {-143,4.2,-113}, {-143,2.5,-113}, {-266,4.2,3}, {-266,2.5,3}, {170,4.2,-20}, {170,2.5,-20}, {-250,4.2,200}, {-250,2.5,200}, {-260,4.2,190}, {-260,2.5,190}, {360,4.2,200}, {360,2.5,200}, {315,4.2,-60}, {315,2.5,-60}, {370,4.2,190}, {370,2.5,190}, {320,4.2,-195}, {320,2.5,-195}, {240,4.2,113}, {240,2.5,113}, {104,4.2,-117}, {104,2.5,-117}, {104,4.2,-106}, {104,2.5,-106}, {},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{} };
+	BodyRotation PeopleRotation[51] = { {}, no_rotation, no_rotation, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, no_rotation, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}}, {90,{0,1,0}} };
 
 	for (int i = 0; i < num_people; i++) 
 	{
