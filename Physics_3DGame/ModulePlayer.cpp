@@ -240,23 +240,24 @@ update_status ModulePlayer::Update(float dt)
 	float CarPosX = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getX();
 	float CarPosZ = vehicle->vehicle->getRigidBody()->getCenterOfMassPosition().getZ();
 
-
-	if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint1 == false) 
+	if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint7 == true && timer.Read() <= 170000) 
+	{
+		win = true; 
+		timer.Stop();
+	}
+	else if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint7 == true && timer.Read() > 170000) 
+	{
+		lose = true;
+		timer.Stop();
+	}
+	else if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint1 == false)
 	{
 		App->audio->PlayFx(App->audio->checkpointFx);
 		checkpoint1 = true;
 		timer.Start();
 		time_started = true;
-		laps =+ 1;
+		laps = +1;
 		message = "RACE STARTED!";
-	}
-	else if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint7 == true && timer.Read() <= 170000) 
-	{
-		win = true; 
-	}
-	else if (CarPosX > 370 && CarPosX < 390 && CarPosZ > 10 && CarPosZ < 11 && checkpoint7 == true && timer.Read() > 170000) 
-	{
-		lose = true;
 	}
 
 	if (CarPosX > 165 && CarPosX < 195 && CarPosZ > -48 && CarPosZ < -46 && checkpoint1 == true)
