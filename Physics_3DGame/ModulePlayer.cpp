@@ -333,8 +333,6 @@ update_status ModulePlayer::Update(float dt)
 		App->audio->PlayFx(App->audio->winFx, 1);
 		message = "CONGRATULATIONS! YOU SCAPED FROM THE GANGSTERS!";
 		timer.Stop();
-		/*lap_sec = timer.Read() / 1000;
-		lap_min = lap_sec / 60;*/
 		if (CarPosZ > 40 && CarPosZ < 41)
 		{
 			vehicle->vehicle->getRigidBody()->setLinearVelocity({ 0, 0, 0 });
@@ -370,7 +368,7 @@ update_status ModulePlayer::Update(float dt)
 	char title[200];
 	sprintf_s(title, "%s || Time: %.2i:%.2i", message, lap_min, lap_sec);
 	App->window->SetTitle(title);
-
+	
 	LOG("x = %.1f", CarPosX);
 	LOG("z = %.1f\n", CarPosZ);
 
